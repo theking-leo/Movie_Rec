@@ -1,4 +1,4 @@
-# Movie_Rec
+#### Movie_Rec
 Movie_Recommenders
 import streamlit as st
 import pandas as pd
@@ -8,7 +8,7 @@ from surprise import Dataset, Reader, KNNBasic
 from surprise.model_selection import train_test_split
 import tmdbsimple as tmdb
 from PIL import Image
-# Load data
+#### Load data
 df1 = pd.read_csv("https://raw.githubusercontent.com/hanaamulic/WBSFLIX-recommendations/main/data/ml-latest-small/movies.csv")
 df2 = pd.read_csv("https://raw.githubusercontent.com/hanaamulic/WBSFLIX-recommendations/main/data/ml-latest-small/ratings.csv")
 combine_df = pd.concat([df1, df2], ignore_index=True)
@@ -32,7 +32,7 @@ def get_movie_poster_url(movie_title):
     return "https://via.placeholder.com/50"
 
 
-# Popularity recommender
+#### Popularity recommender
 def popular_movie_recommender(top_n=5):
     # Implementation of the popularity-based movie recommender
     combine_df['rating_count'] = combine_df.groupby('movieId')['rating'].transform('count')
@@ -48,7 +48,7 @@ def popular_movie_recommender(top_n=5):
     
     return recommended_movies[['title', 'genres', 'rating_count', 'average_rating', 'poster_url']]
 
-#streamlit ui
+####streamlit ui
 def main_popular_movie():
     st.title('Popular Movie Recommender')
     st.write('Welcome to the Popular Movie Recommender section!')
@@ -65,9 +65,9 @@ def main_popular_movie():
         else:
             st.write('No recommendations available.')
 
-# User-based recommender
 
-# User-based recommender
+
+#### User-based recommender
 def user_based_movie_recommender(user_id, n_recommendations):
     # Prepare data for Surprise
     reader = Reader(rating_scale=(1, 5))
@@ -97,7 +97,7 @@ def user_based_movie_recommender(user_id, n_recommendations):
     return recommended_movies[['title', 'predicted_rating', 'poster_url']]
 
 
-# Streamlit UI for user-based movie recommender
+#### Streamlit UI for user-based movie recommender
 def main_user_based_movie():
     st.title('User-Based Movie Recommender')
     st.write('Welcome to User-Based Movie Recommender Section!')
@@ -116,7 +116,7 @@ def main_user_based_movie():
         else:
             st.write('No recommendations available.')
 
-# Streamlit user_id
+#### Streamlit user_id
     # Placeholder implementation for collaborative filtering
     # Replace this with the actual collaborative filtering algorithm
     # ...# Streamlit user_id
@@ -135,7 +135,7 @@ def collaborative_filtering_recommender(user_id, n=5):
     recommended_movies_df = df1[df1['movieId'].isin(similar_movies)]
     return recommended_movies_df
 
-# Streamlit UI for collaborative filtering
+#### Streamlit UI for collaborative filtering
 def main_collaborative_filtering():
     st.title('User ID Movie Recommender')
     st.write('Welcome to User ID Movie Recommender section!')
@@ -152,7 +152,7 @@ def main_collaborative_filtering():
         else:
             st.write('No recommendations available.')
 
-# Streamlit main application
+#### Streamlit main application
 def main():
     st.sidebar.title('Movie Recommender')
     app_mode = st.sidebar.selectbox("Choose the Recommender", ["User ID", "Popular Movies", "User-Based"])
