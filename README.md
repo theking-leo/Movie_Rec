@@ -48,7 +48,7 @@ def popular_movie_recommender(top_n=5):
     
     return recommended_movies[['title', 'genres', 'rating_count', 'average_rating', 'poster_url']]
 
-####streamlit ui
+#### streamlit ui
 def main_popular_movie():
     st.title('Popular Movie Recommender')
     st.write('Welcome to the Popular Movie Recommender section!')
