@@ -12,7 +12,7 @@ from PIL import Image
 df1 = pd.read_csv("https://raw.githubusercontent.com/hanaamulic/WBSFLIX-recommendations/main/data/ml-latest-small/movies.csv")
 df2 = pd.read_csv("https://raw.githubusercontent.com/hanaamulic/WBSFLIX-recommendations/main/data/ml-latest-small/ratings.csv")
 combine_df = pd.concat([df1, df2], ignore_index=True)
-tmdb.API_KEY = "ac6b5e3a5f72e2d8552e4582926227a1"
+tmdb.API_KEY = "YOUR_API"
 
 def get_movie_poster_url(movie_title):
     search = tmdb.Search()
